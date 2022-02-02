@@ -1,0 +1,75 @@
+<div class="  mb-6 ">
+  <div class="flex justify-end mb-6 px-2 mx-20 add_button">
+    <button mat-raised-button class="mr-auto" color="primary" (click)="addPost()">
+      Create new
+    </button>
+  </div>
+
+  <div class="mx-20 p-2 rounded overflow-hidden shadow-lg">
+    <ng-container *ngIf="dataSource ; else loader">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="img">
+          <th mat-header-cell *matHeaderCellDef class="w-1/12 text-center">image</th>
+          <td mat-cell *matCellDef="let element" class="w-1/12 text-center">
+            <img class="rounded-full w-12 text-center"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqrrxsxZSpsfebkw8VLXe6R5j7mryT6PK7Pg&usqp=CAU"
+              [alt]="element?.userName" />
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="userName">
+          <th mat-header-cell *matHeaderCellDef class="w-2/12 text-center">User Name</th>
+          <td mat-cell *matCellDef="let element" class="w-2/12 text-center">{{ element?.userName }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef class="w-3/12 text-center">Title</th>
+          <td mat-cell *matCellDef="let element" class="w-3/12 text-center ">{{ element?.title }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="body">
+          <th mat-header-cell *matHeaderCellDef class="w-6/12 text-center">Body</th>
+          <td mat-cell *matCellDef="let element" class="w-6/12 text-center ">{{ element?.body }}</td>
+        </ng-container>
+        <ng-container matColumnDef="operation">
+          <th mat-header-cell *matHeaderCellDef class="w-6/12 text-center">
+            operations
+          </th>
+          <td mat-cell *matCellDef="let element" class="w-6/12 text-center ">
+            <div>
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="21.048" height="14" viewBox="0 0 21.048 14">
+                <path id="view-icon"
+                  d="M10185.2,11882.537a.692.692,0,0,1,0-.794c.179-.248,4.437-6.1,9.873-6.1s9.693,5.854,9.873,6.1a.682.682,0,0,1,0,.794c-.18.25-4.434,6.1-9.873,6.1S10185.376,11882.787,10185.2,11882.537Zm1.372-.4c1.026,1.271,4.5,5.156,8.5,5.156s7.477-3.885,8.5-5.153c-1.029-1.273-4.5-5.158-8.5-5.158S10187.6,11880.869,10186.569,11882.14Zm4.545,0a3.957,3.957,0,1,1,3.956,4.037A4,4,0,0,1,10191.114,11882.14Zm1.318,0a2.638,2.638,0,1,0,2.638-2.687A2.669,2.669,0,0,0,10192.433,11882.14Z"
+                  transform="translate(-10184.548 -11875.142)" fill="#3e74b3" stroke="rgba(0,0,0,0)"
+                  stroke-miterlimit="10" stroke-width="1" />
+              </svg>
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20.001" viewBox="0 0 16 20.001">
+                <path id="delete-icon"
+                  d="M442.031,477.64a1.857,1.857,0,0,1-1.844-1.786l-.532-11.339h-.337a.62.62,0,0,1-.615-.625h0V461.7a1.553,1.553,0,0,1,1.539-1.562h3.384v-.625a1.863,1.863,0,0,1,1.846-1.875h2.461a1.863,1.863,0,0,1,1.846,1.875v.625h3.385A1.551,1.551,0,0,1,454.7,461.7v2.188a.62.62,0,0,1-.615.625h-.336l-.532,11.339a1.857,1.857,0,0,1-1.844,1.786Zm-.614-1.845a.619.619,0,0,0,.614.6h9.344a.619.619,0,0,0,.614-.6l.53-11.28H440.888ZM439.935,461.7v1.563h13.537V461.7a.31.31,0,0,0-.307-.312H440.242a.31.31,0,0,0-.307.31Zm4.923-2.187v.625h3.691v-.625a.62.62,0,0,0-.615-.625h-2.461a.621.621,0,0,0-.614.624Zm4.307,15v-8.125a.615.615,0,1,1,1.231,0v8.125a.615.615,0,1,1-1.231,0Zm-3.077,0v-8.125a.615.615,0,1,1,1.231,0v8.125a.615.615,0,1,1-1.231,0Zm-3.077,0v-8.125a.615.615,0,1,1,1.231,0v8.125a.615.615,0,1,1-1.231,0Z"
+                  transform="translate(-438.703 -457.641)" fill="#788da5" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                <path id="edit-icon"
+                  d="M477.64,460.879l-1.477-1.474a2.84,2.84,0,0,0-3.993,0l-11.2,11.208-.2.268-.076.3-2.191,6.554a.636.636,0,0,0,.394.812.464.464,0,0,0,.21.034.413.413,0,0,0,.2-.027l6.888-2.293.011.005.1-.066.181-.008-.05-.1,11.209-11.22A2.838,2.838,0,0,0,477.64,460.879Zm-17.527,16.044,1.553-4.636,3.09,3.087Zm5.838-2.168-3.657-3.654,9.361-9.36,3.657,3.655Zm10.916-10.932,0,.014-.64.648-3.661-3.658.513-.514a1.547,1.547,0,0,1,2.177,0l1.49,1.48A1.542,1.542,0,0,1,476.866,463.823Z"
+                  transform="translate(-458.462 -458.585)" fill="#788da5" />
+              </svg>
+
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="size" [length]="totalSize"
+        [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons showFirstLastButtons aria-label="Select page ">
+      </mat-paginator>
+    </ng-container>
+  </div>
+  <ng-template #loader>
+    <app-loading></app-loading>
+  </ng-template>
+</div>

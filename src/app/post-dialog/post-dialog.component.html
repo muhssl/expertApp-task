@@ -1,0 +1,33 @@
+<div class="px-4 py-8">
+    <h2 mat-dialog-title class="text-center mb-4">Add Post </h2>
+    <div mat-dialog-content >
+
+        <form [formGroup]='postForm' class="mb-6" >
+            <mat-form-field appearance="fill" class="w-full">
+                <mat-label>Users</mat-label>
+                <mat-select formControlName='userId' >
+                  <mat-option *ngFor="let user of users$|async" [value]="user?.id">
+                    {{user?.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+
+            <mat-form-field appearance="fill" class="w-full my-4">
+                <mat-label >Post Title</mat-label>
+                <input formControlName='title' matInput type="text">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill" class="w-full">
+                <mat-label>Your comment</mat-label>
+                <textarea formControlName='body'  rows="5" matInput placeholder="Ex. It makes me feel..."></textarea>
+              </mat-form-field>
+
+        </form>
+
+    </div>
+    <div mat-dialog-actions>
+    <button mat-button (click)="closeDialog()">No Thanks</button>
+    <button mat-button  cdkFocusInitial (click)='submitPostForm()' >Ok</button>
+    </div>
+</div>
